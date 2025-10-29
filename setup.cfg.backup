@@ -1,0 +1,27 @@
+[metadata]
+name = python-termii
+version = attr: termii.__version__
+author = Doghor Samuel Destiny
+author_email = labs@samdoghor.com
+description = A clean Python SDK for the Termii API (SMS, Voice, and OTP)
+long_description = file: README.md
+long_description_content_type = text/markdown
+keywords = termii, sms, otp, sdk, nigeria, api
+license = MIT
+classifiers =
+    Development Status :: 3 - Alpha
+    Intended Audience :: Developers
+    License :: OSI Approved :: MIT License
+    Programming Language :: Python :: 3
+    Topic :: Software Development :: Libraries :: Python Modules
+
+[options]
+zip_safe = False
+include_package_data = True
+packages = find:
+python_requires = >=3.8
+install_requires =
+    requests
+
+[options.packages.find]
+where = termii
