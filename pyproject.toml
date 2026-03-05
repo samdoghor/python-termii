@@ -26,6 +26,7 @@ classifiers = [
 ]
 dependencies = [
     "requests",
+    "python-dotenv"
 ]
 
 [project.urls]
@@ -40,4 +41,4 @@ where = ["."]
 include = ["termii_py*"]
 
 [tool.setuptools.package-data]
-termii_py  = ["py.typed"]
+termii_py = ["py.typed"]

@@ -83,9 +83,9 @@ class MessageService:
             raise ValueError("For voice channel, the 'type' parameter must be set to 'voice'.")
 
         if not compare_digest("generic", str(channel).strip().lower()) and not compare_digest("dnd",
-                                                                                             str(channel).strip().lower() or not compare_digest(
-                                                                                                 "voice",
-                                                                                                 str(channel).strip().lower())):
+                                                                                              str(channel).strip().lower() or not compare_digest(
+                                                                                                  "voice",
+                                                                                                  str(channel).strip().lower())):
             raise ValueError("The 'channel' parameter must be either 'generic' or 'dnd' or voice.")
 
         payload = {
@@ -177,7 +177,7 @@ class MessageService:
             raise ValueError("Voice messages are not supported in bulk messaging.")
 
         if not compare_digest("generic", str(channel).strip().lower()) and not compare_digest("dnd",
-                                                                                             str(channel).strip().lower()):
+                                                                                              str(channel).strip().lower()):
             raise ValueError("The 'channel' parameter must be either 'generic' or 'dnd' or voice.")
 
         payload = {

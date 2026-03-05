@@ -6,6 +6,8 @@ Methods:
     fetch_id: Retrieves a list of sender IDs based on query parameters.
     request_id: Requests a new sender ID.
 """
+from termii_py.http import RequestHandler
+
 
 class SenderIDService:
     """
@@ -18,7 +20,7 @@ class SenderIDService:
         https://developer.termii.com/sender-id
     """
 
-    def __init__(self, http):
+    def __init__(self, http: RequestHandler):
         """
         Initializes a SenderIDService instance.
 
@@ -74,4 +76,3 @@ class SenderIDService:
         }
 
         return self.http.post("/api/sender-id/request", json=payload)
-

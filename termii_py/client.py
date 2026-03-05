@@ -2,9 +2,15 @@
 This module provides the main client interface for interacting with the Termii API.
 """
 from termii_py import config
-from .exception import ClientConfigError
 from .http import RequestHandler
-from .services import ContactService, MessageService, NumberService, PhonebookService, SenderIDService, TemplateService
+from .services import CampaignService, \
+    ContactService, \
+    MessageService, \
+    NumberService, \
+    PhonebookService, \
+    SenderIDService, \
+    TemplateService
+from .utils.exception import ClientConfigError
 
 
 class TermiiClient:
@@ -43,6 +49,7 @@ class TermiiClient:
         self.template = TemplateService(self.http)
         self.phonebook = PhonebookService(self.http)
         self.contact = ContactService(self.http)
+        self.campaign = CampaignService(self.http)
 
         if not self.api_key:
             raise ClientConfigError(

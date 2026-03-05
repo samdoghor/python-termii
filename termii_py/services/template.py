@@ -11,6 +11,7 @@ References:
 Classes:
     TemplateService: Handles message dispatch operations via Termii's Template Messaging API.
 """
+from termii_py.http import RequestHandler
 from termii_py.value_object import PhoneNumber
 
 
@@ -25,7 +26,7 @@ class TemplateService:
         http: An instance of the HTTP client.
     """
 
-    def __init__(self, http):
+    def __init__(self, http: RequestHandler):
         """
         Initializes a SenderIDService instance.
 
