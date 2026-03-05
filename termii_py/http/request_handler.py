@@ -58,3 +58,36 @@ class RequestHandler:
         response = requests.post(f"{self.base_url}{endpoint}", json=json)
 
         return RequestResponse.handle_response(response)
+
+    def patch(self, endpoint, json: dict):
+        """
+
+        """
+
+        json["api_key"] = self.api_key
+        response = requests.patch(f"{self.base_url}{endpoint}", json=json)
+
+        return RequestResponse.handle_response(response)
+
+    def delete(self, endpoint, params=None):
+        """
+
+        """
+
+        params = params or {}
+        params["api_key"] = self.api_key
+        response = requests.delete(f"{self.base_url}{endpoint}", params=params)
+
+        return RequestResponse.handle_response(response)
+
+    def post_file(self, endpoint, file_path: str, data: dict):
+        """
+
+        """
+
+        data["api_key"] = self.api_key
+
+        files = {"file": open(file_path, "rb")}
+        response = requests.post(f"{self.base_url}{endpoint}", files=files, data=data)
+
+        return RequestResponse.handle_response(response)

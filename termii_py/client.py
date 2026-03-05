@@ -4,7 +4,7 @@ This module provides the main client interface for interacting with the Termii A
 from termii_py import config
 from .exception import ClientConfigError
 from .http import RequestHandler
-from .services import MessageService, NumberService, SenderIDService
+from .services import ContactService, MessageService, NumberService, PhonebookService, SenderIDService, TemplateService
 
 
 class TermiiClient:
@@ -40,6 +40,9 @@ class TermiiClient:
         self.sender_id = SenderIDService(self.http)
         self.message = MessageService(self.http)
         self.number = NumberService(self.http)
+        self.template = TemplateService(self.http)
+        self.phonebook = PhonebookService(self.http)
+        self.contact = ContactService(self.http)
 
         if not self.api_key:
             raise ClientConfigError(

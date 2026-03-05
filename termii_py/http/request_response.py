@@ -47,7 +47,7 @@ class RequestResponse:
             standardized status and message.
         """
 
-        if compare_digest(str(response.status_code), "200"):
+        if compare_digest(str(response.status_code), "200") or compare_digest(str(response.status_code), "201"):
             return RequestResponse(
                 status_code=response.status_code,
                 status="ok",
@@ -62,5 +62,3 @@ class RequestResponse:
             )
 
         return None
-
-
