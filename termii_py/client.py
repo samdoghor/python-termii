@@ -42,6 +42,12 @@ class TermiiClient:
     def __init__(self, api_key: str = None, base_url: str = None):
         self.api_key = api_key or config.TERMII_API_KEY
         self.base_url = base_url or config.TERMII_BASE_URL
+
+        if not self.api_key:
+            raise ValueError("api_key is required. Pass it directly or set TERMII_API_KEY in your environment.")
+        if not self.base_url:
+            raise ValueError("base_url is required. Pass it directly or set TERMII_BASE_URL in your environment.")
+
         self.http = RequestHandler(self.api_key, self.base_url)
         self.sender_id = SenderIDService(self.http)
         self.message = MessageService(self.http)
