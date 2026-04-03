@@ -7,4 +7,4 @@ to make API requests and handle responses effectively.
 from .client import TermiiClient
 
 __all__ = ["TermiiClient"]
-__version__ = "0.1.0"
+__version__ = "0.1.2"

@@ -28,6 +28,11 @@ dependencies = [
     "python-dotenv"
 ]
 
+[project.optional-dependencies]
+test = [
+    "pytest"
+]
+
 [project.urls]
 Homepage = "https://github.com/samdoghor/python-termii"
 Repository = "https://github.com/samdoghor/python-termii"

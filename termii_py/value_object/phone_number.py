@@ -71,4 +71,7 @@ class PhoneNumber:
             False
         """
 
+        if not isinstance(phone_number, str):
+            return False
+
         return bool(re.match(r"^234\d{10}$", phone_number))

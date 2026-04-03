@@ -44,9 +44,15 @@ class TermiiClient:
         self.base_url = base_url or config.TERMII_BASE_URL
 
         if not self.api_key:
-            raise ValueError("api_key is required. Pass it directly or set TERMII_API_KEY in your environment.")
+            raise ClientConfigError(
+                "Missing TERMII_API_KEY. Provide via api_key parameter or TERMII_API_KEY environment variable. "
+                "Get your API key at: https://app.termii.com/"
+            )
         if not self.base_url:
-            raise ValueError("base_url is required. Pass it directly or set TERMII_BASE_URL in your environment.")
+            raise ClientConfigError(
+                "Missing TERMII_BASE_URL. Provide via base_url parameter or TERMII_BASE_URL environment variable. "
+                "Get your base url at: https://app.termii.com/"
+            )
 
         self.http = RequestHandler(self.api_key, self.base_url)
         self.sender_id = SenderIDService(self.http)
@@ -56,15 +62,3 @@ class TermiiClient:
         self.phonebook = PhonebookService(self.http)
         self.contact = ContactService(self.http)
         self.campaign = CampaignService(self.http)
-
-        if not self.api_key:
-            raise ClientConfigError(
-                "Missing TERMII_API_KEY. Provide via api_key parameter or TERMII_API_KEY environment variable. "
-                "Get your API key at: https://app.termii.com/"
-            )
-
-        if not self.base_url:
-            raise ClientConfigError(
-                "Missing TERMII_BASE_URL. Provide via base_url parameter or TERMII_BASE_URL environment variable. "
-                "Get your base url at: https://app.termii.com/"
-            )
