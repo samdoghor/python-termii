@@ -135,7 +135,9 @@ class RequestHandler:
 
         data["api_key"] = self.api_key
 
-        files = {"file": open(file_path, "rb")}
-        response = requests.post(f"{self.base_url}{endpoint}", files=files, data=data)
+        with open(file_path, "rb") as file_handle:
+            files = {"file": file_handle}
+            response = requests.post(
+                f"{self.base_url}{endpoint}", files=files, data=data)
 
         return RequestResponse.handle_response(response)

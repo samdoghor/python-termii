@@ -74,19 +74,20 @@ class MessageService:
         """
 
         PhoneNumber(sent_to)
+        normalized_channel = str(channel).strip().lower()
+        normalized_type = str(type).strip().lower()
 
-        if compare_digest("whatsapp", str(channel).strip().lower()):
-            raise ValueError("For WhatsApp messages, please use the 'send_whatsapp_message' method.")
+        if compare_digest("whatsapp", normalized_channel):
+            raise ValueError(
+                "For WhatsApp messages, please use the 'send_whatsapp_message' method.")
 
-        if compare_digest("voice", str(channel).strip().lower()) and not compare_digest("voice",
-                                                                                        str(type).strip().lower()):
-            raise ValueError("For voice channel, the 'type' parameter must be set to 'voice'.")
+        if compare_digest("voice", normalized_channel) and not compare_digest("voice", normalized_type):
+            raise ValueError(
+                "For voice channel, the 'type' parameter must be set to 'voice'.")
 
-        if not compare_digest("generic", str(channel).strip().lower()) and not compare_digest("dnd",
-                                                                                              str(channel).strip().lower() or not compare_digest(
-                                                                                                  "voice",
-                                                                                                  str(channel).strip().lower())):
-            raise ValueError("The 'channel' parameter must be either 'generic' or 'dnd' or voice.")
+        if normalized_channel not in ["generic", "dnd", "voice"]:
+            raise ValueError(
+                "The 'channel' parameter must be either 'generic' or 'dnd' or voice.")
 
         payload = {
             "to": sent_to,
@@ -170,15 +171,20 @@ class MessageService:
         for x in sent_to:
             PhoneNumber(x)
 
-        if compare_digest("whatsapp", str(channel).strip().lower()):
-            raise ValueError("For WhatsApp messages, please use the 'send_whatsapp_message' method.")
+        normalized_channel = str(channel).strip().lower()
+        normalized_type = str(type).strip().lower()
 
-        if compare_digest("voice", str(channel).strip().lower()) or compare_digest("voice", str(type).strip().lower()):
-            raise ValueError("Voice messages are not supported in bulk messaging.")
+        if compare_digest("whatsapp", normalized_channel):
+            raise ValueError(
+                "For WhatsApp messages, please use the 'send_whatsapp_message' method.")
 
-        if not compare_digest("generic", str(channel).strip().lower()) and not compare_digest("dnd",
-                                                                                              str(channel).strip().lower()):
-            raise ValueError("The 'channel' parameter must be either 'generic' or 'dnd' or voice.")
+        if compare_digest("voice", normalized_channel) or compare_digest("voice", normalized_type):
+            raise ValueError(
+                "Voice messages are not supported in bulk messaging.")
+
+        if normalized_channel not in ["generic", "dnd"]:
+            raise ValueError(
+                "The 'channel' parameter must be either 'generic' or 'dnd' or voice.")
 
         payload = {
             "to": sent_to,
